@@ -32,7 +32,8 @@ public class VisionCone : MonoBehaviour
 
     void DrawVisionCone()//this method creates the vision cone mesh
     {
-	    int[] triangles = new int[(VisionConeResolution - 1) * 3];
+	    
+        int[] triangles = new int[(VisionConeResolution - 1) * 3];
     	Vector3[] Vertices = new Vector3[VisionConeResolution + 1];
         Vertices[0] = Vector3.zero;
         float Currentangle = -VisionAngle / 2;
@@ -48,7 +49,6 @@ public class VisionCone : MonoBehaviour
             Vector3 VertForward = (Vector3.forward * Cosine) + (Vector3.right * Sine);
             if (Physics.Raycast(transform.position, RaycastDirection, out RaycastHit hit, VisionRange, VisionObstructingLayer))
             {
-                if(hit.collider.   )
                 if (hit.collider.gameObject== target)
                 {
                     Debug.Log("Hit!");
