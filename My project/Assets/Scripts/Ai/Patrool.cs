@@ -20,9 +20,9 @@ public class Patrool : MonoBehaviour
 
     private void Update() 
     {
-        if(agent.remainingDistance<=agent.stoppingDistance) {timer+=Time.deltaTime;}
+        if(agent.remainingDistance<=agent.stoppingDistance) {timer+=Time.deltaTime; Debug.Log(timer);}
         
-        if(timer>2) 
+        if(timer>2 & agent.remainingDistance<=agent.stoppingDistance) 
         {
             StartPatrool();
             timer=0;
@@ -36,4 +36,5 @@ public class Patrool : MonoBehaviour
         agent.SetDestination(points[Random.Range(0,points.Count)].transform.position);
 
     }
+
 }
