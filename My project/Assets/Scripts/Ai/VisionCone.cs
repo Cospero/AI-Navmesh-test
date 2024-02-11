@@ -12,6 +12,7 @@ public class VisionCone : MonoBehaviour
     public int VisionConeResolution = 120;//the vision cone will be made up of triangles, the higher this value is the pretier the vision cone will be
     Mesh VisionConeMesh;
     [SerializeField] private GameObject target;
+    [SerializeField] private Patrool _patrool;
     MeshFilter MeshFilter_;
     //Create all of these variables, most of them are self explanatory, but for the ones that aren't i've added a comment to clue you in on what they do
     //for the ones that you dont understand dont worry, just follow along
@@ -51,7 +52,11 @@ public class VisionCone : MonoBehaviour
             {
                 if (hit.collider.gameObject== target)
                 {
-                    Debug.Log("Hit!");
+                    if(_patrool._startChasing==true)
+                    {
+                        _patrool.SwitchAgentStateByID(1);
+                    }
+                    
                 }
                 Vertices[i + 1] = VertForward * hit.distance;
             }
