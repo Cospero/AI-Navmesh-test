@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float defaultHeight = 2f;
     public float crouchHeight = 1f;
     public float crouchSpeed = 3f;
+    //Testbool
+    public bool _makeSound;
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
@@ -29,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            _makeSound=!_makeSound;
+        }
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 

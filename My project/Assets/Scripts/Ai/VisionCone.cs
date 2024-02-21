@@ -52,7 +52,7 @@ public class VisionCone : MonoBehaviour
             {
                 if (hit.collider.gameObject== target)
                 {
-                    if(_patrool._startChasing==true)
+                    if(_patrool._isChasing==false)
                     {
                         _patrool.SwitchAgentStateByID(1);
                     }

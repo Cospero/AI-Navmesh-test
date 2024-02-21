@@ -18,7 +18,6 @@ public class Patrool : MonoBehaviour
     private NavMeshAgent agent;
     private float timer=0;
     private Transform _currentTarget;
-    public bool _startChasing {private set;get;}
     private Transform _lastPatroolpoint;
 
     private void Start() 
@@ -27,7 +26,7 @@ public class Patrool : MonoBehaviour
         _pointsObject.GetComponentsInChildren<PointOb>(true,points);
         _currentTarget=points[0].transform;
         _isPatrooling=true;
-        _startChasing=true;
+        _isChasing=false;
     }
 
     private void Update() 
@@ -46,10 +45,10 @@ public class Patrool : MonoBehaviour
     {
         while(true)
         {
-
-            yield return new WaitForSeconds(0.1f);
+            
             Debug.Log("Go to position");
             agent.SetDestination(_currentTarget.position);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -57,16 +56,12 @@ public class Patrool : MonoBehaviour
     {
         _lastPatroolpoint=_currentTarget;
         _currentTarget=points[UnityEngine.Random.Range(0,points.Count)].transform;
-        
         StartCoroutine("SetDestinationToPoint");
-        //agent.SetDestination(points[Random.Range(0,points.Count)].transform.position);
-
     }
 
     private void Chasing()
-    {   if(_startChasing)
+    {   /* if(_isChasing)
         {
-            _startChasing=false;
             Debug.Log("Start chasing");
             StopCoroutine("SetDestinationToPoint");
             _currentTarget=_player.transform;
@@ -75,29 +70,37 @@ public class Patrool : MonoBehaviour
             {
                 Debug.Log("Player in attack range!");
             }
-        }
+        } */
 
-        if(Physics.Raycast(transform.position, _player.transform.position-transform.position, out RaycastHit hit, 40f, VisionObstructingLayer))
+        if(Physics.Raycast(transform.position, _player.transform.position-transform.position, out RaycastHit hit, 30f, VisionObstructingLayer))
         {
-            Debug.Log("see player");
-            if (hit.collider.gameObject.tag=="Default")
+            if(hit.collider.gameObject.tag=="Player")
+            {
+                Debug.Log("see player");
+                StopCoroutine("SetDestinationToPoint");
+                _currentTarget=_player.transform;
+                _lastSeenPlayerPosition.position=_player.transform.position;
+                StartCoroutine("SetDestinationToPoint");
+                if(agent.remainingDistance<=_attackRange)
+                {
+                    Debug.Log("Player in attack range!");
+                }
+            }
+            else if (hit.collider.gameObject.tag!="Player")
             {
                 StopCoroutine("SetDestinationToPoint");
                 Debug.Log("dont see player");
                 _lastSeenPlayerPosition.position=_player.transform.position;
                 _currentTarget=_lastSeenPlayerPosition;
                 StartCoroutine("SetDestinationToPoint");
-            }
-            
+                SwitchAgentStateByID(0);
+            }    
         }
         else 
         {
-            Debug.Log("dont see anything");
-            _lastSeenPlayerPosition.position=_player.transform.position;
             _currentTarget=_lastSeenPlayerPosition;
-        }
-        
-        
+            SwitchAgentStateByID(0);
+        }  
     }
     private void Patrooling()
     {
@@ -120,7 +123,6 @@ public class Patrool : MonoBehaviour
         else if(id == 1)
         {
             _isChasing = true;
-            _startChasing=true;
             _isPatrooling = false;
         }
     }
