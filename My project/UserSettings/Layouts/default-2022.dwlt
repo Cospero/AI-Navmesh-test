@@ -413,9 +413,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 568dffff
-      m_LastClickedID: -29354
-      m_ExpandedIDs: a2f9ffff605a0000925a0000ae5a0000
+      m_SelectedIDs: 025a0000
+      m_LastClickedID: 23042
+      m_ExpandedIDs: 28fbffff085a00003a5a0000485a0000565a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -834,9 +834,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -22.788763, y: -60.332485, z: -62.784634}
+    m_Target: {x: -134.93988, y: -52.256775, z: 64.93688}
     speed: 2
-    m_Value: {x: -22.788763, y: -60.332485, z: -62.784634}
+    m_Value: {x: -134.93988, y: -52.256775, z: 64.93688}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -882,13 +882,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.030301878, y: -0.944006, z: 0.3157798, w: 0.09057698}
+    m_Target: {x: -0.1322358, y: 0.5672375, z: -0.092878774, w: -0.80751806}
     speed: 2
-    m_Value: {x: 0.030302081, y: -0.94401234, z: 0.31578192, w: 0.09057758}
+    m_Value: {x: -0.13223867, y: 0.5672498, z: -0.092880785, w: -0.8075356}
   m_Size:
-    m_Target: 61.566563
+    m_Target: 85.82245
     speed: 2
-    m_Value: 61.566563
+    m_Value: 85.82245
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -975,7 +975,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 51}
     m_SelectedIDs: 8e590000
     m_LastClickedID: 22926
-    m_ExpandedIDs: 000000008e590000925900009a5900009e590000aa590000ae590000325b000000ca9a3b
+    m_ExpandedIDs: 00000000ec5a0000ee5a0000f05a0000f25a0000f45a0000f65a0000f85a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1003,7 +1003,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008e590000925900009a5900009e590000aa590000ae590000325b0000
+    m_ExpandedIDs: 00000000ec5a0000ee5a0000f05a0000f25a0000f45a0000f65a0000f85a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1129,7 +1129,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -29354
+  m_LastSelectedObjectID: 23042
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52

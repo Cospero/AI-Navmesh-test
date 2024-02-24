@@ -13,6 +13,11 @@ public class VisionCone : MonoBehaviour
     Mesh VisionConeMesh;
     [SerializeField] private GameObject target;
     [SerializeField] private Patrool _patrool;
+    //[SerializeField] private GameObject _visionConeRotationOb;
+    [SerializeField] private float _maxVerticalRotation; //Recommend value 35-40f
+    private Transform _coneTransform;
+    private bool _lastRotateUp;
+    private bool _endRotate=true;
     MeshFilter MeshFilter_;
     //Create all of these variables, most of them are self explanatory, but for the ones that aren't i've added a comment to clue you in on what they do
     //for the ones that you dont understand dont worry, just follow along
@@ -22,6 +27,7 @@ public class VisionCone : MonoBehaviour
         MeshFilter_ = transform.AddComponent<MeshFilter>();
         VisionConeMesh = new Mesh();
         VisionAngle *= Mathf.Deg2Rad;
+        _coneTransform=this.gameObject.transform;
         
     }
 
@@ -29,6 +35,8 @@ public class VisionCone : MonoBehaviour
     void Update()
     {
         DrawVisionCone();//calling the vision cone function everyframe just so the cone is updated every frame
+        RotateVisionCone();
+
     }
 
     void DrawVisionCone()//this method creates the vision cone mesh
@@ -79,6 +87,26 @@ public class VisionCone : MonoBehaviour
         VisionConeMesh.vertices = Vertices;
         VisionConeMesh.triangles = triangles;
         MeshFilter_.mesh = VisionConeMesh;
+    }
+
+    private void RotateVisionCone()
+    {
+        if(_lastRotateUp)
+        {
+            _coneTransform.localRotation=Quaternion.Slerp(_coneTransform.localRotation, Quaternion.Euler(-_maxVerticalRotation,0,0), 25*Time.deltaTime);
+            if (_coneTransform.localRotation.eulerAngles.x>=_maxVerticalRotation & _coneTransform.localRotation.eulerAngles.x<=360-_maxVerticalRotation+2)
+            {
+                _lastRotateUp=false;
+            }
+        }
+        else if(!_lastRotateUp)
+        {
+            _coneTransform.localRotation=Quaternion.Slerp(_coneTransform.localRotation, Quaternion.Euler(_maxVerticalRotation,0,0), 25*Time.deltaTime);
+            if (_coneTransform.localRotation.eulerAngles.x>=_maxVerticalRotation-3 & _coneTransform.localRotation.eulerAngles.x<100)
+            {
+                _lastRotateUp=true;
+            }
+        }
     }
 
 

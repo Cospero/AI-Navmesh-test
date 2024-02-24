@@ -15,6 +15,8 @@ public class Patrool : MonoBehaviour
     [SerializeField] private Transform _lastSeenPlayerPosition;
     [SerializeField] private float _attackRange=1.5f;
     private List<PointOb> points = new List<PointOb>();
+    [SerializeField] private float _agentPatroolRotatSpeed;
+    [SerializeField] private float _agentChaseRotatSpeed;
     private NavMeshAgent agent;
     private float timer=0;
     private Transform _currentTarget;
@@ -33,10 +35,12 @@ public class Patrool : MonoBehaviour
     {
         if(_isPatrooling)
         {
+            agent.angularSpeed=_agentPatroolRotatSpeed;
             Patrooling();
         }
         else if(_isChasing)
         {
+            agent.angularSpeed=_agentChaseRotatSpeed;
             Chasing();
         }
     }
